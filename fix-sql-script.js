@@ -1,9 +1,18 @@
-process.stdout.write(`drop database bowling_league_modify;\n\n`)
-
-process.stdout.write(
-  require(`fs`)
+const sql = require(`fs`)
     .readFileSync(0)
     .toString(`utf-8`)
+
+process.stdout.write(
+  sql
+    .replace(
+      /create database ([a-z]+);/ig,
+      (create_cmd, db_name) => `DROP DATABASE IF EXISTS ${db_name};\n\n${create_cmd}`
+    )
+    // postgres uses '\c dbname;' to connect to a db
+    .replace(
+      /use ([a-z]+);/ig,
+      (_, db_name) => `\\c ${db_name};`
+    )
     // Tourney_ID -> Tourney_id
     // TourneyID -> Tourney_id
     .replace(
@@ -39,8 +48,9 @@ process.stdout.write(
     )
     // i have OCD k??
     .replace(/\t/g, `    `)
-    .replace(/ +([,\n;])/g, (_, gr) => gr)
+    .replace(/ +([,\n;])/g, (_, punctuation) => punctuation)
     .replace(/([a-z])  +([a-z])/ig, (_, a, b) => `${a} ${b}`)
     .replace(/\n\n+/g, `\n\n`)
+    .replace(/([a-z\(\),])\n\n+/ig, (_, char) => `${char}\n`)
     .trim()
 )
