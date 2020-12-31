@@ -1,5 +1,4 @@
 \c sales_orders_example;
-
 SELECT
     vend_name
 FROM
@@ -8,7 +7,8 @@ WHERE
     vend_city IN ('Ballard', 'Bellevue', 'Redmond');
 
 SELECT
-    product_name, retail_price
+    product_name,
+    retail_price
 FROM
     products
 WHERE
