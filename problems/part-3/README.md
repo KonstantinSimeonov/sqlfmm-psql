@@ -40,3 +40,13 @@ JOIN
 ORDER BY
     customer;
 ```
+
+## Practice problems
+
+#### Sales orders database
+1. List customers and the dates they places an order, sorted in order date sequence (944 rows, 2 tables join)
+1. List employees and customers for whom they booked an order (211 rows, more than 2 tables join)
+1. Display all orders, the products in each order, and the amount owed for each product, in order number sequence (3973 rows, more than 2 tables join)
+1. Show me the vendors and products they supply to us for products that cost less than $100 (66 rows, more than 2 tables join)
+1. Show me customers and employees who have the same last name (16 rows, 2 tables join)
+1. Show me customers and employees living in the same cities (10 rows, 2 tables join)
